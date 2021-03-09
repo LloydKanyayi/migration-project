@@ -1,3 +1,4 @@
 .terraform.lock.hcl
 .idea/workspace.xml
 .terraform/
+terraform.tfstate
