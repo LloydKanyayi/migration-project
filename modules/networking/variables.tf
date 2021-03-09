@@ -1,7 +1,11 @@
 #---------------networking/variables.tf
 
-variable "vpc_cidr" {}
+variable "vpc_cidr" {
+  default =  "10.123.0.0/16"
+}
 
-variable "az_count" {}
+variable "az_count" {
+  default =  "2"
+}
 
 ###########################################################
