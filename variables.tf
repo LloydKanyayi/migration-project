@@ -1,5 +1,5 @@
 #---------- root/variables.tf
 
 variable "aws_region" {
-  default = "eu-west-1"
+  default = "us-east-1"
 }
