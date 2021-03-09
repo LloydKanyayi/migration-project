@@ -2,21 +2,12 @@
 
 
 
-variable "security_groups" {
-  default = ""
-}
+variable "public_subnets" {}
 
 
-variable "public_subnets" {
-  default = ""
-}
-
-
-variable "aws_vpc" {
-  default = ""
-}
+variable "aws_vpc" {}
 
 
 variable "app_port" {
-  default = ""
+  default = "80"
 }
