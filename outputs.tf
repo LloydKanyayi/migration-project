@@ -1,15 +1,15 @@
-
+#-------------root/outputs.tf
 
 
 output "vpc_id" {
   description = "ID of EU-WEST-1 VPC"
-  value = aws_vpc.main.id
+  value = module.networking.vpc_id
 }
 
 output "subnet_id_public" {
-  value = aws_subnet.public.*.id
+  value = module.networking.subnet_id_public
 }
 
 output "subnet_id_private" {
-  value = aws_subnet.private.*.id
+  value = module.networking.subnet_id_private
 }
