@@ -2,7 +2,7 @@
 
 
 data "template_file" "my-first-app" {
-  template = file("./modules/ecs-fargate")
+  template = file("./template/ecs-task.json.tpl")
 }
 
 
