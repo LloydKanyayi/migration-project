@@ -3,7 +3,7 @@
 
 output "vpc_id" {
   description = "ID of EU-WEST-1 VPC"
-  value = module.networking.vpc_id
+  value       = module.networking.vpc_id
 }
 
 output "subnet_id_public" {

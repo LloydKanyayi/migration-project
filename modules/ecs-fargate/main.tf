@@ -1,7 +1,7 @@
 #-----------ecs-fargate/main.tf
 
 
-data "template_file" "my-first-app"{
+data "template_file" "my-first-app" {
   template = file("./modules/ecs-fargate")
 }
 
@@ -18,22 +18,22 @@ resource "aws_ecs_cluster" "main" {
 
 
 resource "aws_ecs_service" "main" {
-  name = "myapp-service"
-  cluster = aws_ecs_cluster.main.id
+  name            = "myapp-service"
+  cluster         = aws_ecs_cluster.main.id
   task_definition = aws_ecs_task_definition.main.arn
-  desired_count = 2
-  launch_type = "FARGATE"
+  desired_count   = 2
+  launch_type     = "FARGATE"
 
   network_configuration {
-    security_groups = var.ecs_service_security_groups
-    subnets = var.private_subnets
+    security_groups  = var.ecs_service_security_groups
+    subnets          = var.private_subnets
     assign_public_ip = false
   }
 
   load_balancer {
     target_group_arn = var.aws_alb_target_group_arn
-    container_name = "my-first-app"
-    container_port = var.container_port
+    container_name   = "my-first-app"
+    container_port   = var.container_port
   }
 
   lifecycle {
@@ -45,7 +45,7 @@ resource "aws_ecs_service" "main" {
 # creating Task Definition for the ecs-fargate service
 
 resource "aws_ecs_task_definition" "main" {
-  family = "myapp-task"
+  family                   = "myapp-task"
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   cpu                      = 256
@@ -85,21 +85,21 @@ resource "aws_iam_role_policy_attachment" "ecs-task-execution-role-policy-attach
 # creating Security group for ecs-fargate service
 
 resource "aws_security_group" "ecs_tasks" {
-name   = "ecs-security"
-vpc_id = var.vpc_id
+  name   = "ecs-security"
+  vpc_id = var.vpc_id
 
-ingress {
-protocol         = "tcp"
-from_port        = var.container_port
-to_port          = var.container_port
-cidr_blocks      = ["0.0.0.0/0"]
-}
+  ingress {
+    protocol    = "tcp"
+    from_port   = var.container_port
+    to_port     = var.container_port
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
-egress {
-protocol         = "-1"
-from_port        = 0
-to_port          = 0
-cidr_blocks      = ["0.0.0.0/0"]
-}
+  egress {
+    protocol    = "-1"
+    from_port   = 0
+    to_port     = 0
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 }
 

@@ -2,15 +2,15 @@
 
 resource "aws_ecr_repository" "main" {
   name                 = "my-repo"
-image_tag_mutability = "MUTABLE"
+  image_tag_mutability = "MUTABLE"
 }
 
 #----------------setting a lifecycle policy on tagged image
 
 resource "aws_ecr_lifecycle_policy" "main" {
-repository = aws_ecr_repository.main.name
+  repository = aws_ecr_repository.main.name
 
-policy = <<EOF
+  policy = <<EOF
 {
     "rules": [
         {
