@@ -12,3 +12,11 @@ module "alb" {
   aws_vpc        = module.networking.vpc_id
   public_subnets = module.networking.subnet_id_public
 }
+
+module "ecs-fargate" {
+  source = "./modules/ecs-fargate"
+  aws_alb_target_group_arn = module.alb.aws_alb_target_group_arn
+  private_subnets = module.networking.subnet_id_private
+  vpc_id = module.networking.vpc_id
+
+}
