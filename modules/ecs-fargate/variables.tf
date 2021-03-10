@@ -13,3 +13,8 @@ variable "container_port" {
 variable "vpc_id" {
   type = string
 }
+
+
+variable "alb_listener_front_end" {}
+
+

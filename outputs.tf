@@ -17,3 +17,7 @@ output "subnet_id_private" {
 output "aws_alb_target_group_arn" {
   value = module.alb.aws_alb_target_group_arn
 }
+
+output "alb_listener_front_end" {
+  value = module.alb.alb_listener_front_end
+}

@@ -19,4 +19,5 @@ module "ecs-fargate" {
   private_subnets = module.networking.subnet_id_private
   vpc_id = module.networking.vpc_id
 
+  alb_listener_front_end = module.alb.alb_listener_front_end
 }

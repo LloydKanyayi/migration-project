@@ -17,6 +17,7 @@ resource "aws_ecs_cluster" "main" {
 # creating a service for the ecs-fargate service
 
 
+
 resource "aws_ecs_service" "main" {
   name            = "myapp-service"
   cluster         = aws_ecs_cluster.main.id
@@ -35,6 +36,7 @@ resource "aws_ecs_service" "main" {
     container_name   = "my-first-app"
     container_port   = var.container_port
   }
+  depends_on = [var.alb_listener_front_end, aws_iam_role_policy_attachment.ecs-task-execution-role-policy-attachment]
 
   lifecycle {
     ignore_changes = [task_definition, desired_count]
