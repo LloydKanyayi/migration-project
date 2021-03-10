@@ -10,6 +10,7 @@ resource "aws_vpc" "main" {
   }
 }
 
+
 # Create var.az_count private subnets, each in a different AZ
 resource "aws_subnet" "private" {
   count             = var.az_count
@@ -20,6 +21,7 @@ resource "aws_subnet" "private" {
     Name = "private-subnet-${count.index + 1}"
   }
 }
+
 
 # Create var.az_count public subnets, each in a different AZ
 resource "aws_subnet" "public" {
@@ -33,6 +35,7 @@ resource "aws_subnet" "public" {
     Name = "public-subnet-${count.index + 1 }"
   }
 }
+
 
 # Internet Gateway for the public subnet
 resource "aws_internet_gateway" "igw" {
@@ -52,11 +55,13 @@ resource "aws_route_table" "public" {
     Name        = "public-route-table"
   }
 }
+
 resource "aws_route" "internet_access" {
   route_table_id         = aws_route_table.public.id
   destination_cidr_block = "0.0.0.0/0"
   gateway_id             = aws_internet_gateway.igw.id
 }
+
 resource "aws_route_table_association" "public" {
   count          = var.az_count
   subnet_id      = element(aws_subnet.public.*.id, count.index)
@@ -74,6 +79,7 @@ resource "aws_eip" "gw" {
     Name = "nat-eip-${count.index + 1}"
   }
 }
+
 
 resource "aws_nat_gateway" "gw" {
   count         = var.az_count
@@ -100,6 +106,7 @@ resource "aws_route_table" "private" {
     Name        = "private-route-table-${count.index + 1}"
   }
 }
+
 
 # Explicitly associate the newly created route tables to the private subnets (so they don't default to the main route table)
 resource "aws_route_table_association" "private" {

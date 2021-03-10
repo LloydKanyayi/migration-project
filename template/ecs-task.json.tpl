@@ -1,6 +1,6 @@
 [
   {
-    "name": "firstapp",
+    "name": "my-first-app",
     "image": "service-first",
     "cpu": 256,
     "memory": 512,

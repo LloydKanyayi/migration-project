@@ -13,3 +13,7 @@ output "subnet_id_public" {
 output "subnet_id_private" {
   value = module.networking.subnet_id_private
 }
+
+output "aws_alb_target_group_arn" {
+  value = module.alb.aws_alb_target_group_arn
+}
