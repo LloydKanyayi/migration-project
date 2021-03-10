@@ -3,7 +3,7 @@
 
 output "vpc_id" {
   description = "ID of EU-WEST-1 VPC"
-  value = aws_vpc.main.id
+  value       = aws_vpc.main.id
 }
 
 output "subnet_id_public" {

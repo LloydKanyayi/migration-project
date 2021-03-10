@@ -2,9 +2,9 @@
 
 
 resource "aws_alb" "main" {
-  name            = "myapp-load-balancer"
-  subnets         = var.public_subnets
-  security_groups = [aws_security_group.lb.id]
+  name               = "myapp-load-balancer"
+  subnets            = var.public_subnets
+  security_groups    = [aws_security_group.lb.id]
   load_balancer_type = "application"
 
   tags = {

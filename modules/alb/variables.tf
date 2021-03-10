@@ -1,9 +1,7 @@
 #------------------alb/variables.tf
 
 
-
 variable "public_subnets" {}
-
 
 variable "aws_vpc" {}
 
