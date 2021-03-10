@@ -1,7 +1,7 @@
 [
   {
     "name": "my-first-app",
-    "image": "service-first",
+    "image": "nginx:latest",
     "cpu": 256,
     "memory": 512,
     "essential": true,
